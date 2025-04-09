@@ -12,8 +12,8 @@ using MyWebAPI.Data;
 namespace TPAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250408075226_premieremigration")]
-    partial class premieremigration
+    [Migration("20250409094622_syncapresDelTable")]
+    partial class syncapresDelTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

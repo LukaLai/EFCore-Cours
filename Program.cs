@@ -6,13 +6,14 @@ using System.Text;
 using static System.Console;
 using MyWebAPI.Services;
 using Microsoft.OpenApi.Models;
+using MyWebAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging(true);
 
 });
 
@@ -65,11 +66,25 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddControllers();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<LocationService>();
 builder.Services.AddScoped<EventService>();
+builder.Services.AddScoped<RoomService>();
+builder.Services.AddScoped<SessionService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Logging.AddConsole();
 
 var app = builder.Build();
+
+
+// Exécutez le seed
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    context.Database.Migrate();
+    DatabaseSeeder.Seed(context);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

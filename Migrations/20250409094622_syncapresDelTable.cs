@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TPAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class premieremigration : Migration
+    public partial class syncapresDelTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
