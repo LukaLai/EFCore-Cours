@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "QgZJ05Q8MwZHT3QZLvLyVjt739y75aUfPNgwvTBLAmg=",
+  "Source": "TPAPI",
+  "BasePath": "_content/TPAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
