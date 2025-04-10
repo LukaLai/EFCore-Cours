@@ -166,3 +166,6 @@ C:\ISITECH\Dotnet\TPAPI\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security
 C:\ISITECH\Dotnet\TPAPI\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\ISITECH\Dotnet\TPAPI\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\ISITECH\Dotnet\TPAPI\obj\Debug\net9.0\TPAPI.sourcelink.json
+C:\ISITECH\Dotnet\TPAPI\bin\Debug\net9.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\ISITECH\Dotnet\TPAPI\bin\Debug\net9.0\TPAPI.xml
+C:\ISITECH\Dotnet\TPAPI\obj\Debug\net9.0\TPAPI.xml
