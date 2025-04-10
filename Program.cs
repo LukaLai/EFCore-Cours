@@ -3,7 +3,6 @@ using MyWebAPI.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using static System.Console;
 using MyWebAPI.Services;
 using Microsoft.OpenApi.Models;
 using MyWebAPI.Repositories;
@@ -13,8 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")).EnableSensitiveDataLogging(true);
-
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+       .EnableSensitiveDataLogging(true);
 });
 
 // Auth
@@ -39,6 +38,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddSwaggerGen(options =>
 {
+    options.EnableAnnotations();
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -65,13 +65,19 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
+
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<LocationService>();
 builder.Services.AddScoped<EventService>();
 builder.Services.AddScoped<RoomService>();
 builder.Services.AddScoped<SessionService>();
+builder.Services.AddScoped<RatingService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Logging.AddConsole();
 
